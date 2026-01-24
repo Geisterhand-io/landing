@@ -1,0 +1,115 @@
+---
+// Quick Start section with installation code blocks
+---
+
+<section id="quickstart" class="py-24 px-4 bg-bg-secondary/50">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="section-heading">
+      Quick <span class="gradient-text">Start</span>
+    </h2>
+    <p class="section-subheading">
+      Get up and running in under a minute. No package managers required.
+    </p>
+
+    <div class="space-y-8">
+      <!-- Step 1: Download -->
+      <div class="card">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-8 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center text-sm font-bold">1</span>
+          <h3 class="text-lg font-semibold text-text-primary">Download the Binary</h3>
+        </div>
+        <div class="code-block">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs text-text-secondary">Terminal</span>
+            <button class="text-xs text-text-secondary hover:text-accent-blue transition-colors" onclick="navigator.clipboard.writeText('curl -L https://github.com/Geisterhand-io/macos/releases/latest/download/geisterhand -o /usr/local/bin/geisterhand && chmod +x /usr/local/bin/geisterhand')">
+              Copy
+            </button>
+          </div>
+          <code class="text-sm">
+            <span class="text-green-400">curl</span> <span class="text-text-secondary">-L</span> https://github.com/Geisterhand-io/macos/releases/latest/download/geisterhand \<br/>
+            &nbsp;&nbsp;<span class="text-text-secondary">-o</span> /usr/local/bin/geisterhand && \<br/>
+            <span class="text-green-400">chmod</span> <span class="text-text-secondary">+x</span> /usr/local/bin/geisterhand
+          </code>
+        </div>
+      </div>
+
+      <!-- Step 2: Configure Claude -->
+      <div class="card">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-8 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center text-sm font-bold">2</span>
+          <h3 class="text-lg font-semibold text-text-primary">Configure Claude Desktop</h3>
+        </div>
+        <p class="text-text-secondary text-sm mb-4">
+          Add Geisterhand to your Claude Desktop configuration file:
+        </p>
+        <div class="code-block">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs text-text-secondary">~/Library/Application Support/Claude/claude_desktop_config.json</span>
+          </div>
+          <code class="text-sm">
+            <span class="text-purple-400">&#123;</span><br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"mcpServers"</span>: <span class="text-purple-400">&#123;</span><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-accent-blue">"geisterhand"</span>: <span class="text-purple-400">&#123;</span><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-accent-blue">"command"</span>: <span class="text-green-400">"/usr/local/bin/geisterhand"</span><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-400">&#125;</span><br/>
+            &nbsp;&nbsp;<span class="text-purple-400">&#125;</span><br/>
+            <span class="text-purple-400">&#125;</span>
+          </code>
+        </div>
+      </div>
+
+      <!-- Step 3: Grant Permissions -->
+      <div class="card">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-8 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center text-sm font-bold">3</span>
+          <h3 class="text-lg font-semibold text-text-primary">Grant Permissions</h3>
+        </div>
+        <p class="text-text-secondary text-sm mb-4">
+          Open System Settings and grant these permissions to Claude Desktop:
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="flex items-start gap-3 p-4 bg-bg-primary rounded-lg border border-white/5">
+            <svg class="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="4"/>
+              <line x1="21.17" y1="8" x2="12" y2="8"/>
+              <line x1="3.95" y1="6.06" x2="8.54" y2="14"/>
+              <line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
+            </svg>
+            <div>
+              <div class="font-medium text-text-primary text-sm">Accessibility</div>
+              <div class="text-xs text-text-secondary">Privacy & Security &rarr; Accessibility</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-4 bg-bg-primary rounded-lg border border-white/5">
+            <svg class="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <div>
+              <div class="font-medium text-text-primary text-sm">Screen Recording</div>
+              <div class="text-xs text-text-secondary">Privacy & Security &rarr; Screen Recording</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Start Testing -->
+      <div class="card border-accent-blue/30">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-8 rounded-full bg-accent-blue text-white flex items-center justify-center text-sm font-bold">4</span>
+          <h3 class="text-lg font-semibold text-text-primary">Start Testing!</h3>
+        </div>
+        <p class="text-text-secondary text-sm mb-4">
+          Restart Claude Desktop and start automating. Try asking:
+        </p>
+        <div class="code-block bg-accent-blue/5 border-accent-blue/20">
+          <code class="text-sm text-text-primary">
+            "Open TextEdit, create a new document, type 'Hello World', and take a screenshot."
+          </code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

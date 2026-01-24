@@ -1,0 +1,76 @@
+---
+// Demo Video section with placeholder
+---
+
+<section id="demo" class="py-24 px-4">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="section-heading">
+      See It In <span class="gradient-text">Action</span>
+    </h2>
+    <p class="section-subheading">
+      Watch Geisterhand automate a complete testing workflow in under 2 minutes.
+    </p>
+
+    <!-- Video Placeholder -->
+    <div class="relative aspect-video rounded-2xl overflow-hidden bg-bg-secondary border border-white/10">
+      <!-- Placeholder gradient background -->
+      <div class="absolute inset-0 bg-gradient-to-br from-accent-blue/20 via-purple-500/10 to-bg-secondary"></div>
+
+      <!-- Play button overlay -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <button class="group relative" aria-label="Play demo video">
+          <!-- Pulse animation -->
+          <div class="absolute inset-0 -m-4 bg-accent-blue/20 rounded-full animate-ping"></div>
+
+          <!-- Play button -->
+          <div class="relative w-20 h-20 bg-accent-blue hover:bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-lg shadow-accent-blue/30">
+            <svg class="w-8 h-8 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </div>
+        </button>
+      </div>
+
+      <!-- Video placeholder content -->
+      <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-bg-primary/90 to-transparent">
+        <div class="flex items-center gap-4">
+          <!-- Terminal window mockup -->
+          <div class="flex-1 bg-bg-primary/80 rounded-lg p-4 border border-white/10">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+              <span class="text-xs text-text-secondary ml-2">Demo Recording</span>
+            </div>
+            <p class="text-sm text-text-secondary font-mono">
+              <span class="text-accent-blue">$</span> geisterhand testing TextEdit...
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coming soon badge -->
+      <div class="absolute top-4 right-4">
+        <span class="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs text-text-secondary border border-white/10">
+          Demo Coming Soon
+        </span>
+      </div>
+    </div>
+
+    <!-- Video features -->
+    <div class="grid sm:grid-cols-3 gap-6 mt-8">
+      <div class="text-center">
+        <div class="text-2xl font-bold text-accent-blue mb-1">2:00</div>
+        <div class="text-sm text-text-secondary">Quick Demo</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-accent-blue mb-1">Real App</div>
+        <div class="text-sm text-text-secondary">Actual macOS Testing</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-accent-blue mb-1">No Edits</div>
+        <div class="text-sm text-text-secondary">Raw Recording</div>
+      </div>
+    </div>
+  </div>
+</section>

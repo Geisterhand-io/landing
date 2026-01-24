@@ -1,0 +1,80 @@
+---
+// Features section highlighting key capabilities
+const features = [
+  {
+    title: "Zero Configuration",
+    description: "No test scripts to write. No selectors to maintain. Just describe what you want to test in plain English and Geisterhand figures out the rest.",
+    icon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>`
+  },
+  {
+    title: "Claude Native",
+    description: "Built as an MCP server, Geisterhand integrates seamlessly with Claude Desktop. Use the same AI you already know and trust.",
+    icon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+      <line x1="12" y1="19" x2="12" y2="22"/>
+    </svg>`
+  },
+  {
+    title: "Lightning Screenshots",
+    description: "Capture full-resolution screenshots of any window or the entire screen. Perfect for visual regression testing and documentation.",
+    icon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+      <circle cx="8.5" cy="8.5" r="1.5"/>
+      <polyline points="21 15 16 10 5 21"/>
+    </svg>`
+  },
+  {
+    title: "Headless Mode",
+    description: "Run tests in the background without interrupting your work. Geisterhand operates silently while you focus on what matters.",
+    icon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+      <line x1="1" y1="1" x2="23" y2="23"/>
+    </svg>`
+  },
+  {
+    title: "Full Accessibility API",
+    description: "Interact with any UI element through macOS Accessibility APIs. Click buttons, fill forms, navigate menus, and read screen content.",
+    icon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <circle cx="12" cy="12" r="4"/>
+      <line x1="21.17" y1="8" x2="12" y2="8"/>
+      <line x1="3.95" y1="6.06" x2="8.54" y2="14"/>
+      <line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
+    </svg>`
+  },
+  {
+    title: "Native Swift Performance",
+    description: "Built in pure Swift for maximum performance and minimal resource usage. No Electron, no Node.js, no overhead.",
+    icon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </svg>`
+  }
+];
+---
+
+<section id="features" class="py-24 px-4 bg-bg-secondary/50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="section-heading">
+      Built for <span class="gradient-text">Developers</span>
+    </h2>
+    <p class="section-subheading">
+      Everything you need to automate Mac app testing, nothing you don't.
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map((feature) => (
+        <div class="card card-hover group">
+          <div class="w-12 h-12 rounded-lg bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center text-accent-blue mb-4 group-hover:scale-110 transition-transform">
+            <Fragment set:html={feature.icon} />
+          </div>
+          <h3 class="text-lg font-semibold mb-2 text-text-primary">{feature.title}</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
