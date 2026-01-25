@@ -1,0 +1,233 @@
+---
+// API Reference section for developers and LLMs
+const endpoints = [
+  {
+    method: "GET",
+    path: "/status",
+    description: "System info, permissions, frontmost app, screen size",
+    params: null,
+  },
+  {
+    method: "GET",
+    path: "/screenshot",
+    description: "Capture screen as base64 PNG",
+    params: "display_id (optional)",
+  },
+  {
+    method: "POST",
+    path: "/click",
+    description: "Click at screen coordinates",
+    params: "x, y, button?, click_count?, modifiers?",
+  },
+  {
+    method: "POST",
+    path: "/type",
+    description: "Type text at cursor position",
+    params: "text, delay_ms?",
+  },
+  {
+    method: "POST",
+    path: "/key",
+    description: "Press key with modifiers",
+    params: "key, modifiers?",
+  },
+  {
+    method: "POST",
+    path: "/scroll",
+    description: "Scroll at position",
+    params: "x, y, delta_x?, delta_y?",
+  },
+  {
+    method: "GET",
+    path: "/accessibility/tree",
+    description: "Get UI element hierarchy",
+    params: "pid?, maxDepth?",
+  },
+  {
+    method: "GET",
+    path: "/accessibility/elements",
+    description: "Find elements by criteria",
+    params: "role?, title?, titleContains?, labelContains?",
+  },
+  {
+    method: "GET",
+    path: "/accessibility/focused",
+    description: "Get focused element",
+    params: "pid?",
+  },
+  {
+    method: "POST",
+    path: "/accessibility/action",
+    description: "Perform action on element",
+    params: "path, action, value?",
+  },
+];
+
+const keys = ["return", "tab", "space", "escape", "delete", "up", "down", "left", "right", "home", "end", "pageup", "pagedown", "f1-f12"];
+const modifiers = ["cmd", "ctrl", "alt", "shift", "fn"];
+const roles = ["AXButton", "AXTextField", "AXTextArea", "AXCheckBox", "AXPopUpButton", "AXMenuItem", "AXStaticText", "AXLink"];
+const actions = ["press", "setValue", "focus", "confirm", "cancel", "increment", "decrement", "showMenu"];
+---
+
+<section id="api" class="py-24 px-4">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="section-heading">
+      API <span class="gradient-text">Reference</span>
+    </h2>
+    <p class="section-subheading">
+      HTTP API on <code class="text-accent-blue">http://127.0.0.1:7676</code>. All requests use JSON. All field names use snake_case.
+    </p>
+
+    <!-- Endpoints Table -->
+    <div class="card mb-8 overflow-x-auto">
+      <h3 class="text-lg font-semibold text-text-primary mb-4">Endpoints</h3>
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-white/10">
+            <th class="text-left py-2 pr-4 text-text-secondary font-medium">Method</th>
+            <th class="text-left py-2 pr-4 text-text-secondary font-medium">Endpoint</th>
+            <th class="text-left py-2 pr-4 text-text-secondary font-medium">Description</th>
+            <th class="text-left py-2 text-text-secondary font-medium">Parameters</th>
+          </tr>
+        </thead>
+        <tbody>
+          {endpoints.map((ep) => (
+            <tr class="border-b border-white/5">
+              <td class="py-2 pr-4">
+                <span class={`px-2 py-0.5 rounded text-xs font-mono ${ep.method === 'GET' ? 'bg-green-500/20 text-green-400' : 'bg-blue-500/20 text-blue-400'}`}>
+                  {ep.method}
+                </span>
+              </td>
+              <td class="py-2 pr-4 font-mono text-accent-blue">{ep.path}</td>
+              <td class="py-2 pr-4 text-text-secondary">{ep.description}</td>
+              <td class="py-2 font-mono text-xs text-text-secondary">{ep.params || "—"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Examples Grid -->
+    <div class="grid lg:grid-cols-2 gap-6 mb-8">
+      <!-- Click Example -->
+      <div class="card">
+        <h4 class="text-sm font-semibold text-text-primary mb-3">Click with modifiers</h4>
+        <div class="code-block text-xs">
+          <code>
+            <span class="text-green-400">POST</span> /click<br/>
+            <span class="text-purple-400">&#123;</span><br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"x"</span>: <span class="text-yellow-400">500</span>,<br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"y"</span>: <span class="text-yellow-400">300</span>,<br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"button"</span>: <span class="text-green-400">"left"</span>,<br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"click_count"</span>: <span class="text-yellow-400">2</span>,<br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"modifiers"</span>: [<span class="text-green-400">"cmd"</span>]<br/>
+            <span class="text-purple-400">&#125;</span>
+          </code>
+        </div>
+      </div>
+
+      <!-- Key Example -->
+      <div class="card">
+        <h4 class="text-sm font-semibold text-text-primary mb-3">Keyboard shortcut (Cmd+S)</h4>
+        <div class="code-block text-xs">
+          <code>
+            <span class="text-green-400">POST</span> /key<br/>
+            <span class="text-purple-400">&#123;</span><br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"key"</span>: <span class="text-green-400">"s"</span>,<br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"modifiers"</span>: [<span class="text-green-400">"cmd"</span>]<br/>
+            <span class="text-purple-400">&#125;</span>
+          </code>
+        </div>
+      </div>
+
+      <!-- Find Elements Example -->
+      <div class="card">
+        <h4 class="text-sm font-semibold text-text-primary mb-3">Find buttons by label</h4>
+        <div class="code-block text-xs">
+          <code>
+            <span class="text-green-400">GET</span> /accessibility/elements<br/>
+            &nbsp;&nbsp;?role=AXButton<br/>
+            &nbsp;&nbsp;&labelContains=Submit
+          </code>
+        </div>
+        <p class="text-xs text-text-secondary mt-2">
+          Returns elements with <code class="text-accent-blue">path</code>, <code class="text-accent-blue">frame</code>, and <code class="text-accent-blue">actions</code>
+        </p>
+      </div>
+
+      <!-- Action Example -->
+      <div class="card">
+        <h4 class="text-sm font-semibold text-text-primary mb-3">Press a button by path</h4>
+        <div class="code-block text-xs">
+          <code>
+            <span class="text-green-400">POST</span> /accessibility/action<br/>
+            <span class="text-purple-400">&#123;</span><br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"path"</span>: <span class="text-purple-400">&#123;</span><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-accent-blue">"pid"</span>: <span class="text-yellow-400">12345</span>,<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-accent-blue">"path"</span>: [<span class="text-yellow-400">0, 0, 2, 5</span>]<br/>
+            &nbsp;&nbsp;<span class="text-purple-400">&#125;</span>,<br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"action"</span>: <span class="text-green-400">"press"</span><br/>
+            <span class="text-purple-400">&#125;</span>
+          </code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Reference -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div class="card">
+        <h4 class="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Special Keys</h4>
+        <p class="text-xs text-text-primary font-mono leading-relaxed">{keys.join(", ")}</p>
+      </div>
+      <div class="card">
+        <h4 class="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Modifiers</h4>
+        <p class="text-xs text-text-primary font-mono leading-relaxed">{modifiers.join(", ")}</p>
+      </div>
+      <div class="card">
+        <h4 class="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Common Roles</h4>
+        <p class="text-xs text-text-primary font-mono leading-relaxed">{roles.join(", ")}</p>
+      </div>
+      <div class="card">
+        <h4 class="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Actions</h4>
+        <p class="text-xs text-text-primary font-mono leading-relaxed">{actions.join(", ")}</p>
+      </div>
+    </div>
+
+    <!-- Workflow Pattern -->
+    <div class="card border-accent-blue/20">
+      <h3 class="text-lg font-semibold text-text-primary mb-4">Recommended Workflow for LLMs</h3>
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="text-center">
+          <div class="w-10 h-10 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center mx-auto mb-2 text-sm font-bold">1</div>
+          <p class="text-sm text-text-primary font-medium">Check status</p>
+          <p class="text-xs text-text-secondary mt-1">GET /status to verify permissions and get frontmost app PID</p>
+        </div>
+        <div class="text-center">
+          <div class="w-10 h-10 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center mx-auto mb-2 text-sm font-bold">2</div>
+          <p class="text-sm text-text-primary font-medium">Find elements</p>
+          <p class="text-xs text-text-secondary mt-1">GET /accessibility/elements with role, title, or label filters</p>
+        </div>
+        <div class="text-center">
+          <div class="w-10 h-10 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center mx-auto mb-2 text-sm font-bold">3</div>
+          <p class="text-sm text-text-primary font-medium">Perform action</p>
+          <p class="text-xs text-text-secondary mt-1">POST /accessibility/action with the element path</p>
+        </div>
+        <div class="text-center">
+          <div class="w-10 h-10 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center mx-auto mb-2 text-sm font-bold">4</div>
+          <p class="text-sm text-text-primary font-medium">Verify result</p>
+          <p class="text-xs text-text-secondary mt-1">GET /screenshot to confirm the action succeeded</p>
+        </div>
+      </div>
+      <p class="text-xs text-text-secondary mt-6 text-center">
+        Prefer accessibility API over coordinate-based clicking. Element paths are more reliable than screen positions.
+      </p>
+    </div>
+
+    <!-- Link to full docs -->
+    <div class="mt-8 text-center">
+      <a href="https://github.com/Geisterhand-io/macos/blob/main/LLM_API_GUIDE.md" target="_blank" rel="noopener noreferrer" class="text-accent-blue hover:underline text-sm">
+        View complete API documentation with curl examples →
+      </a>
+    </div>
+  </div>
+</section>
