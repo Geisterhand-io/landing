@@ -35,6 +35,9 @@
         <p class="text-text-secondary text-xs mt-3">
           Or <a href="https://github.com/Geisterhand-io/macos/releases/latest" target="_blank" rel="noopener noreferrer" class="text-accent-blue hover:underline">download the DMG</a> directly from GitHub releases.
         </p>
+        <p class="text-text-secondary text-xs mt-2">
+          CLI only (no menu bar app): <code class="text-accent-blue text-xs">brew install geisterhand-io/tap/geisterhand</code>
+        </p>
       </div>
 
       <!-- Step 2: Grant Permissions -->
@@ -159,6 +162,35 @@
         </div>
         <p class="text-text-secondary text-xs mt-4">
           Claude will use the Accessibility API to find and click buttons by label, then take a screenshot to verify the result.
+        </p>
+      </div>
+
+      <!-- On-demand mode -->
+      <div class="card">
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-5 h-5 text-accent-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"/>
+            <line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+          <h3 class="text-lg font-semibold text-text-primary">On-Demand Mode with <code class="text-accent-blue">geisterhand run</code></h3>
+        </div>
+        <p class="text-text-secondary text-sm mb-4">
+          Start a scoped server for a specific app without the menu bar app:
+        </p>
+        <div class="code-block">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs text-text-secondary">Terminal</span>
+            <button class="text-xs text-text-secondary hover:text-accent-blue transition-colors copy-btn" data-copy="geisterhand run Calculator">
+              Copy
+            </button>
+          </div>
+          <code class="text-sm">
+            <span class="text-green-400">geisterhand</span> run Calculator<br/>
+            <span class="text-text-secondary">&#123;"port":49152,"pid":12345,"app":"Calculator","host":"127.0.0.1"&#125;</span>
+          </code>
+        </div>
+        <p class="text-text-secondary text-xs mt-3">
+          The server launches scoped to a single app and outputs JSON with connection details. Use the <code class="text-accent-blue">host</code> and <code class="text-accent-blue">port</code> to send API requests directly.
         </p>
       </div>
     </div>

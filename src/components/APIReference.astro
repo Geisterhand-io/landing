@@ -9,9 +9,15 @@ const endpoints = [
   },
   {
     method: "GET",
+    path: "/health",
+    description: "Health check",
+    params: null,
+  },
+  {
+    method: "GET",
     path: "/screenshot",
     description: "Capture screen as base64 PNG",
-    params: "display_id (optional)",
+    params: "app?, windowId?, format?, display?",
   },
   {
     method: "POST",
@@ -21,33 +27,57 @@ const endpoints = [
   },
   {
     method: "POST",
+    path: "/click/element",
+    description: "Click element by semantic properties",
+    params: "title?, role?, label?, pid?, use_accessibility_action?",
+  },
+  {
+    method: "POST",
     path: "/type",
     description: "Type text at cursor position",
-    params: "text, delay_ms?",
+    params: "text, delay_ms?, pid?, path?, role?, title?",
   },
   {
     method: "POST",
     path: "/key",
     description: "Press key with modifiers",
-    params: "key, modifiers?",
+    params: "key, modifiers?, pid?, path?",
   },
   {
     method: "POST",
     path: "/scroll",
     description: "Scroll at position",
-    params: "x, y, delta_x?, delta_y?",
+    params: "x?, y?, delta_x?, delta_y?, pid?, path?",
+  },
+  {
+    method: "POST",
+    path: "/wait",
+    description: "Wait for UI condition",
+    params: "title?, role?, condition, timeout_ms?, poll_interval_ms?",
+  },
+  {
+    method: "GET",
+    path: "/menu",
+    description: "Get app menu structure",
+    params: "app",
+  },
+  {
+    method: "POST",
+    path: "/menu",
+    description: "Trigger menu item",
+    params: "app, path, background?",
   },
   {
     method: "GET",
     path: "/accessibility/tree",
     description: "Get UI element hierarchy",
-    params: "pid?, maxDepth?",
+    params: "pid?, maxDepth?, format?, includeActions?",
   },
   {
     method: "GET",
     path: "/accessibility/elements",
     description: "Find elements by criteria",
-    params: "role?, title?, titleContains?, labelContains?",
+    params: "role?, title?, titleContains?, labelContains?, valueContains?, pid?, maxResults?",
   },
   {
     method: "GET",
@@ -66,7 +96,7 @@ const endpoints = [
 const keys = ["return", "tab", "space", "escape", "delete", "up", "down", "left", "right", "home", "end", "pageup", "pagedown", "f1-f12"];
 const modifiers = ["cmd", "ctrl", "alt", "shift", "fn"];
 const roles = ["AXButton", "AXTextField", "AXTextArea", "AXCheckBox", "AXPopUpButton", "AXMenuItem", "AXStaticText", "AXLink"];
-const actions = ["press", "setValue", "focus", "confirm", "cancel", "increment", "decrement", "showMenu"];
+const actions = ["press", "setValue", "focus", "confirm", "cancel", "increment", "decrement", "showMenu", "pick"];
 ---
 
 <section id="api" class="py-24 px-4">
@@ -109,18 +139,16 @@ const actions = ["press", "setValue", "focus", "confirm", "cancel", "increment",
 
     <!-- Examples Grid -->
     <div class="grid lg:grid-cols-2 gap-6 mb-8">
-      <!-- Click Example -->
+      <!-- Click Element Example -->
       <div class="card">
-        <h4 class="text-sm font-semibold text-text-primary mb-3">Click with modifiers</h4>
+        <h4 class="text-sm font-semibold text-text-primary mb-3">Click element by title</h4>
         <div class="code-block text-xs">
           <code>
-            <span class="text-green-400">POST</span> /click<br/>
+            <span class="text-green-400">POST</span> /click/element<br/>
             <span class="text-purple-400">&#123;</span><br/>
-            &nbsp;&nbsp;<span class="text-accent-blue">"x"</span>: <span class="text-yellow-400">500</span>,<br/>
-            &nbsp;&nbsp;<span class="text-accent-blue">"y"</span>: <span class="text-yellow-400">300</span>,<br/>
-            &nbsp;&nbsp;<span class="text-accent-blue">"button"</span>: <span class="text-green-400">"left"</span>,<br/>
-            &nbsp;&nbsp;<span class="text-accent-blue">"click_count"</span>: <span class="text-yellow-400">2</span>,<br/>
-            &nbsp;&nbsp;<span class="text-accent-blue">"modifiers"</span>: [<span class="text-green-400">"cmd"</span>]<br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"title"</span>: <span class="text-green-400">"Submit"</span>,<br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"role"</span>: <span class="text-green-400">"AXButton"</span>,<br/>
+            &nbsp;&nbsp;<span class="text-accent-blue">"pid"</span>: <span class="text-yellow-400">12345</span><br/>
             <span class="text-purple-400">&#125;</span>
           </code>
         </div>
