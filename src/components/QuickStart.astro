@@ -12,15 +12,12 @@
     </p>
 
     <div class="space-y-8">
-      <!-- Step 1: Install the App -->
+      <!-- Step 1: Install -->
       <div class="card">
         <div class="flex items-center gap-3 mb-4">
           <span class="w-8 h-8 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center text-sm font-bold">1</span>
-          <h3 class="text-lg font-semibold text-text-primary">Install Geisterhand.app</h3>
+          <h3 class="text-lg font-semibold text-text-primary">Install Geisterhand</h3>
         </div>
-        <p class="text-text-secondary text-sm mb-4">
-          Download from GitHub releases or install via Homebrew:
-        </p>
         <div class="code-block">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs text-text-secondary">Terminal</span>
@@ -33,10 +30,8 @@
           </code>
         </div>
         <p class="text-text-secondary text-xs mt-3">
-          Or <a href="https://github.com/Geisterhand-io/macos/releases/latest" target="_blank" rel="noopener noreferrer" class="text-accent-blue hover:underline">download the DMG</a> directly from GitHub releases.
-        </p>
-        <p class="text-text-secondary text-xs mt-2">
-          CLI only (no menu bar app): <code class="text-accent-blue text-xs">brew install geisterhand-io/tap/geisterhand</code>
+          This installs the menu bar app and the <code class="text-accent-blue">geisterhand</code> CLI.
+          Or <a href="https://github.com/Geisterhand-io/macos/releases/latest" target="_blank" rel="noopener noreferrer" class="text-accent-blue hover:underline">download the DMG</a> directly.
         </p>
       </div>
 
@@ -47,7 +42,7 @@
           <h3 class="text-lg font-semibold text-text-primary">Grant Permissions</h3>
         </div>
         <p class="text-text-secondary text-sm mb-4">
-          Launch the app and grant these permissions when prompted:
+          Launch the app once to trigger permission prompts, then grant in System Settings:
         </p>
         <div class="grid sm:grid-cols-2 gap-4">
           <div class="flex items-start gap-3 p-4 bg-bg-primary rounded-lg border border-white/5">
@@ -75,17 +70,89 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Step 3: geisterhand run -->
+      <div class="card border-accent-blue/30">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-8 rounded-full bg-accent-blue text-white flex items-center justify-center text-sm font-bold">3</span>
+          <h3 class="text-lg font-semibold text-text-primary">Start automating with <code class="text-accent-blue">geisterhand run</code></h3>
+        </div>
+        <p class="text-text-secondary text-sm mb-4">
+          Launch a scoped automation server for any app:
+        </p>
+        <div class="code-block">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs text-text-secondary">Terminal</span>
+            <button class="text-xs text-text-secondary hover:text-accent-blue transition-colors copy-btn" data-copy="geisterhand run Calculator">
+              Copy
+            </button>
+          </div>
+          <code class="text-sm">
+            <span class="text-text-secondary">$</span> <span class="text-green-400">geisterhand</span> run Calculator<br/>
+            <span class="text-text-secondary">&#123;"port":49152,"pid":12345,"app":"Calculator","host":"127.0.0.1"&#125;</span>
+          </code>
+        </div>
+        <p class="text-text-secondary text-sm mt-4 mb-3">
+          The server auto-selects a free port, scopes all API requests to the target app, and exits when the app quits. Pass an app name, bundle path, or bundle identifier:
+        </p>
+        <div class="code-block text-xs">
+          <code>
+            <span class="text-green-400">geisterhand</span> run Safari<br/>
+            <span class="text-green-400">geisterhand</span> run /Applications/Xcode.app<br/>
+            <span class="text-green-400">geisterhand</span> run com.apple.TextEdit<br/>
+            <span class="text-green-400">geisterhand</span> run Calculator --port 7676 <span class="text-text-secondary"># pin a specific port</span>
+          </code>
+        </div>
         <p class="text-text-secondary text-xs mt-3">
-          The menu bar icon turns green when all permissions are granted and the server is running.
+          Then send API requests to the <code class="text-accent-blue">host</code> and <code class="text-accent-blue">port</code> from the JSON output.
         </p>
       </div>
 
-      <!-- Step 3: Enable Claude Integration -->
+      <!-- Step 4: Try it -->
       <div class="card">
         <div class="flex items-center gap-3 mb-4">
-          <span class="w-8 h-8 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center text-sm font-bold">3</span>
-          <h3 class="text-lg font-semibold text-text-primary">Enable Claude Integration</h3>
+          <span class="w-8 h-8 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center text-sm font-bold">4</span>
+          <h3 class="text-lg font-semibold text-text-primary">Try it out</h3>
         </div>
+        <p class="text-text-secondary text-sm mb-4">
+          With the server running, send requests directly:
+        </p>
+        <div class="code-block text-xs mb-4">
+          <code>
+            <span class="text-text-secondary"># See what's on screen</span><br/>
+            <span class="text-green-400">curl</span> http://127.0.0.1:49152/accessibility/tree?format=compact<br/><br/>
+            <span class="text-text-secondary"># Click a button</span><br/>
+            <span class="text-green-400">curl</span> -X POST http://127.0.0.1:49152/click/element \<br/>
+            &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
+            &nbsp;&nbsp;-d '&#123;"title": "7", "role": "AXButton"&#125;'<br/><br/>
+            <span class="text-text-secondary"># Take a screenshot</span><br/>
+            <span class="text-green-400">curl</span> http://127.0.0.1:49152/screenshot --output screen.png
+          </code>
+        </div>
+        <p class="text-text-secondary text-sm">
+          Or let an LLM drive it. Add the testing guide to your project's <code class="text-accent-blue">CLAUDE.md</code> and ask Claude to test your app:
+        </p>
+        <div class="code-block bg-accent-blue/5 border-accent-blue/20 mt-3">
+          <code class="text-sm text-text-primary">
+            "Open Calculator, click 7, then +, then 3, then =. What's the result?"
+          </code>
+        </div>
+      </div>
+
+      <!-- Claude/LLM Integration (optional) -->
+      <div class="card">
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-5 h-5 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+          </svg>
+          <h3 class="text-lg font-semibold text-text-primary">Optional: MCP Integration for Claude</h3>
+        </div>
+        <p class="text-text-secondary text-sm mb-4">
+          For a deeper integration, add Geisterhand as an MCP server so Claude can call the API natively:
+        </p>
 
         <!-- Tabs -->
         <div class="flex gap-2 mb-4 border-b border-white/10 pb-2">
@@ -99,9 +166,6 @@
 
         <!-- Claude Code Tab -->
         <div class="tab-content" id="claude-code">
-          <p class="text-text-secondary text-sm mb-4">
-            Click "Enable Claude Code Integration" in the menu bar app, or run:
-          </p>
           <div class="code-block">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs text-text-secondary">Terminal</span>
@@ -115,16 +179,10 @@
               &nbsp;&nbsp;--scope user
             </code>
           </div>
-          <p class="text-text-secondary text-xs mt-3">
-            Then restart Claude Code. Requires Node.js 18+.
-          </p>
         </div>
 
         <!-- Claude Desktop Tab -->
         <div class="tab-content hidden" id="claude-desktop">
-          <p class="text-text-secondary text-sm mb-4">
-            Add to your Claude Desktop config file:
-          </p>
           <div class="code-block">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs text-text-secondary">~/Library/Application Support/Claude/claude_desktop_config.json</span>
@@ -140,57 +198,9 @@
               <span class="text-purple-400">&#125;</span>
             </code>
           </div>
-          <p class="text-text-secondary text-xs mt-3">
-            Then restart Claude Desktop. Requires Node.js 18+.
-          </p>
-        </div>
-      </div>
-
-      <!-- Step 4: Start Testing -->
-      <div class="card border-accent-blue/30">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="w-8 h-8 rounded-full bg-accent-blue text-white flex items-center justify-center text-sm font-bold">4</span>
-          <h3 class="text-lg font-semibold text-text-primary">Start Automating!</h3>
-        </div>
-        <p class="text-text-secondary text-sm mb-4">
-          Make sure Geisterhand.app is running, then try asking Claude:
-        </p>
-        <div class="code-block bg-accent-blue/5 border-accent-blue/20">
-          <code class="text-sm text-text-primary">
-            "Open Calculator, click 7, then +, then 3, then =. What's the result?"
-          </code>
-        </div>
-        <p class="text-text-secondary text-xs mt-4">
-          Claude will use the Accessibility API to find and click buttons by label, then take a screenshot to verify the result.
-        </p>
-      </div>
-
-      <!-- On-demand mode -->
-      <div class="card">
-        <div class="flex items-center gap-3 mb-4">
-          <svg class="w-5 h-5 text-accent-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="4 17 10 11 4 5"/>
-            <line x1="12" y1="19" x2="20" y2="19"/>
-          </svg>
-          <h3 class="text-lg font-semibold text-text-primary">On-Demand Mode with <code class="text-accent-blue">geisterhand run</code></h3>
-        </div>
-        <p class="text-text-secondary text-sm mb-4">
-          Start a scoped server for a specific app without the menu bar app:
-        </p>
-        <div class="code-block">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs text-text-secondary">Terminal</span>
-            <button class="text-xs text-text-secondary hover:text-accent-blue transition-colors copy-btn" data-copy="geisterhand run Calculator">
-              Copy
-            </button>
-          </div>
-          <code class="text-sm">
-            <span class="text-green-400">geisterhand</span> run Calculator<br/>
-            <span class="text-text-secondary">&#123;"port":49152,"pid":12345,"app":"Calculator","host":"127.0.0.1"&#125;</span>
-          </code>
         </div>
         <p class="text-text-secondary text-xs mt-3">
-          The server launches scoped to a single app and outputs JSON with connection details. Use the <code class="text-accent-blue">host</code> and <code class="text-accent-blue">port</code> to send API requests directly.
+          Requires Node.js 18+. Restart Claude after adding.
         </p>
       </div>
     </div>
@@ -201,11 +211,8 @@
   // Tab switching
   document.querySelectorAll('.integration-tab').forEach(tab => {
     tab.addEventListener('click', () => {
-      // Update active tab
       document.querySelectorAll('.integration-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-
-      // Show corresponding content
       document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
       document.getElementById(tab.dataset.tab)?.classList.remove('hidden');
     });

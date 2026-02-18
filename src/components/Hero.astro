@@ -59,16 +59,22 @@
         The ghost hand that automates your Mac. Click buttons, type text, navigate UI elements, and capture screenshots with natural language through Claude Code or Claude Desktop.
       </p>
 
+      <!-- Install Command -->
+      <div class="max-w-lg mx-auto mb-6">
+        <div class="code-block flex items-center justify-between gap-4 py-3">
+          <code class="text-sm">
+            <span class="text-green-400">brew</span> install --cask geisterhand-io/tap/geisterhand
+          </code>
+          <button class="text-xs text-text-secondary hover:text-accent-blue transition-colors flex-shrink-0 copy-btn" data-copy="brew install --cask geisterhand-io/tap/geisterhand">
+            Copy
+          </button>
+        </div>
+      </div>
+
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-        <a href="https://github.com/Geisterhand-io/macos/releases/latest" class="btn-primary w-full sm:w-auto">
-          <!-- Download Icon -->
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Download for macOS
+        <a href="#quickstart" class="btn-primary w-full sm:w-auto">
+          Get Started
         </a>
         <a href="https://github.com/Geisterhand-io/macos" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full sm:w-auto">
           <!-- GitHub Icon -->
@@ -97,3 +103,17 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.dataset.copy;
+      if (text) {
+        navigator.clipboard.writeText(text);
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = original, 2000);
+      }
+    });
+  });
+</script>

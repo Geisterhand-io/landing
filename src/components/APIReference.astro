@@ -105,7 +105,7 @@ const actions = ["press", "setValue", "focus", "confirm", "cancel", "increment",
       API <span class="gradient-text">Reference</span>
     </h2>
     <p class="section-subheading">
-      HTTP API on <code class="text-accent-blue">http://127.0.0.1:7676</code>. All requests use JSON. All field names use snake_case.
+      Start with <code class="text-accent-blue">geisterhand run YourApp</code> and send requests to the port from the JSON output. All requests use JSON with snake_case field names.
     </p>
 
     <!-- Endpoints Table -->
@@ -223,38 +223,63 @@ const actions = ["press", "setValue", "focus", "confirm", "cancel", "increment",
 
     <!-- Workflow Pattern -->
     <div class="card border-accent-blue/20">
-      <h3 class="text-lg font-semibold text-text-primary mb-4">Recommended Workflow for LLMs</h3>
-      <div class="grid md:grid-cols-4 gap-4">
+      <h3 class="text-lg font-semibold text-text-primary mb-4">Recommended Workflow</h3>
+      <div class="grid md:grid-cols-5 gap-4">
         <div class="text-center">
           <div class="w-10 h-10 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center mx-auto mb-2 text-sm font-bold">1</div>
-          <p class="text-sm text-text-primary font-medium">Check status</p>
-          <p class="text-xs text-text-secondary mt-1">GET /status to verify permissions and get frontmost app PID</p>
+          <p class="text-sm text-text-primary font-medium">Launch</p>
+          <p class="text-xs text-text-secondary mt-1"><code class="text-accent-blue">geisterhand run YourApp</code> to start the scoped server</p>
         </div>
         <div class="text-center">
           <div class="w-10 h-10 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center mx-auto mb-2 text-sm font-bold">2</div>
-          <p class="text-sm text-text-primary font-medium">Find elements</p>
-          <p class="text-xs text-text-secondary mt-1">GET /accessibility/elements with role, title, or label filters</p>
+          <p class="text-sm text-text-primary font-medium">Inspect</p>
+          <p class="text-xs text-text-secondary mt-1">GET /accessibility/tree?format=compact to see the UI</p>
         </div>
         <div class="text-center">
           <div class="w-10 h-10 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center mx-auto mb-2 text-sm font-bold">3</div>
-          <p class="text-sm text-text-primary font-medium">Perform action</p>
-          <p class="text-xs text-text-secondary mt-1">POST /accessibility/action with the element path</p>
+          <p class="text-sm text-text-primary font-medium">Interact</p>
+          <p class="text-xs text-text-secondary mt-1">Click elements, type text, press keys, trigger menus</p>
         </div>
         <div class="text-center">
           <div class="w-10 h-10 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center mx-auto mb-2 text-sm font-bold">4</div>
-          <p class="text-sm text-text-primary font-medium">Verify result</p>
-          <p class="text-xs text-text-secondary mt-1">GET /screenshot to confirm the action succeeded</p>
+          <p class="text-sm text-text-primary font-medium">Verify</p>
+          <p class="text-xs text-text-secondary mt-1">GET /screenshot or read element values to confirm</p>
+        </div>
+        <div class="text-center">
+          <div class="w-10 h-10 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center mx-auto mb-2 text-sm font-bold">5</div>
+          <p class="text-sm text-text-primary font-medium">Wait</p>
+          <p class="text-xs text-text-secondary mt-1">POST /wait for UI changes instead of sleep</p>
         </div>
       </div>
       <p class="text-xs text-text-secondary mt-6 text-center">
-        Prefer accessibility API over coordinate-based clicking. Element paths are more reliable than screen positions.
+        Prefer <code class="text-accent-blue">/click/element</code> over coordinate-based <code class="text-accent-blue">/click</code>. Semantic selectors are more reliable than screen positions.
       </p>
     </div>
 
-    <!-- Link to full docs -->
-    <div class="mt-8 text-center">
-      <a href="https://github.com/Geisterhand-io/macos/blob/main/LLM_API_GUIDE.md" target="_blank" rel="noopener noreferrer" class="text-accent-blue hover:underline text-sm">
-        View complete API documentation with curl examples →
+    <!-- Links to full docs -->
+    <div class="mt-8 grid sm:grid-cols-2 gap-4">
+      <a href="https://github.com/Geisterhand-io/macos/blob/main/TESTING_WITH_GEISTERHAND.md" target="_blank" rel="noopener noreferrer" class="card card-hover flex items-center gap-3 group">
+        <svg class="w-5 h-5 text-accent-blue flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        <div>
+          <p class="text-sm font-medium text-text-primary group-hover:text-accent-blue transition-colors">Testing Guide</p>
+          <p class="text-xs text-text-secondary">Full reference with recipes, best practices, and a CLAUDE.md snippet for your project</p>
+        </div>
+      </a>
+      <a href="https://github.com/Geisterhand-io/macos/blob/main/LLM_API_GUIDE.md" target="_blank" rel="noopener noreferrer" class="card card-hover flex items-center gap-3 group">
+        <svg class="w-5 h-5 text-accent-blue flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/>
+          <polyline points="8 6 2 12 8 18"/>
+        </svg>
+        <div>
+          <p class="text-sm font-medium text-text-primary group-hover:text-accent-blue transition-colors">API Documentation</p>
+          <p class="text-xs text-text-secondary">Complete endpoint reference with curl examples</p>
+        </div>
       </a>
     </div>
   </div>
