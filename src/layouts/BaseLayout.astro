@@ -6,7 +6,7 @@ interface Props {
 
 const {
   title = "Geisterhand - AI-Powered App Testing",
-  description = "Test macOS and Windows applications using natural language with Claude. Zero config, instant setup, headless operation. The ghost hand that tests your apps."
+  description = "Test macOS, Windows, and Linux applications using natural language with Claude. Zero config, instant setup, headless operation. The ghost hand that tests your apps."
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -17,7 +17,7 @@ const jsonLd = {
   "@type": "SoftwareApplication",
   "name": "Geisterhand",
   "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "macOS, Windows",
+  "operatingSystem": "macOS, Windows, Linux",
   "description": description,
   "url": "https://geisterhand.dev",
   "author": {
@@ -30,8 +30,8 @@ const jsonLd = {
     "price": "0",
     "priceCurrency": "USD"
   },
-  "softwareRequirements": "macOS 14.0+ or Windows 10+",
-  "programmingLanguage": "Swift, C#"
+  "softwareRequirements": "macOS 14.0+, Windows 10+, or Linux with GNOME",
+  "programmingLanguage": "Swift, C#, Rust"
 };
 ---
 

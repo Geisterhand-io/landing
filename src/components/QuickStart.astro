@@ -25,6 +25,9 @@
           <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="windows">
             Windows
           </button>
+          <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="linux">
+            Linux
+          </button>
         </div>
         <div class="platform-content" data-platform="macos">
           <div class="code-block">
@@ -59,6 +62,22 @@
             Windows code signing coming soon. You may see a SmartScreen warning on first run.
           </p>
         </div>
+        <div class="platform-content hidden" data-platform="linux">
+          <div class="code-block">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-text-secondary">Terminal</span>
+              <button class="text-xs text-text-secondary hover:text-accent-blue transition-colors copy-btn" data-copy="cargo install geisterhand">
+                Copy
+              </button>
+            </div>
+            <code class="text-sm">
+              <span class="text-green-400">cargo</span> install geisterhand
+            </code>
+          </div>
+          <p class="text-text-secondary text-xs mt-3">
+            Requires Rust toolchain. On Arch Linux: <code class="text-accent-blue">yay -S geisterhand</code>
+          </p>
+        </div>
       </div>
 
       <!-- Step 2: Grant Permissions -->
@@ -73,6 +92,9 @@
           </button>
           <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="windows">
             Windows
+          </button>
+          <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="linux">
+            Linux
           </button>
         </div>
         <div class="platform-content" data-platform="macos">
@@ -118,6 +140,37 @@
             </div>
           </div>
         </div>
+        <div class="platform-content hidden" data-platform="linux">
+          <p class="text-text-secondary text-sm mb-4">
+            Enable AT-SPI2 accessibility and configure input permissions:
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="flex items-start gap-3 p-4 bg-bg-primary rounded-lg border border-white/5">
+              <svg class="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="4"/>
+                <line x1="21.17" y1="8" x2="12" y2="8"/>
+                <line x1="3.95" y1="6.06" x2="8.54" y2="14"/>
+                <line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
+              </svg>
+              <div>
+                <div class="font-medium text-text-primary text-sm">AT-SPI2 Accessibility</div>
+                <div class="text-xs text-text-secondary font-mono mt-1">gsettings set org.gnome.desktop.interface toolkit-accessibility true</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-bg-primary rounded-lg border border-white/5">
+              <svg class="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                <circle cx="12" cy="16" r="1"/>
+              </svg>
+              <div>
+                <div class="font-medium text-text-primary text-sm">Input Group (Wayland)</div>
+                <div class="text-xs text-text-secondary font-mono mt-1">sudo usermod -aG input $USER</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Step 3: geisterhand run -->
@@ -151,6 +204,9 @@
           <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="windows">
             Windows
           </button>
+          <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="linux">
+            Linux
+          </button>
         </div>
         <div class="platform-content" data-platform="macos">
           <div class="code-block text-xs">
@@ -172,6 +228,16 @@
             </code>
           </div>
         </div>
+        <div class="platform-content hidden" data-platform="linux">
+          <div class="code-block text-xs">
+            <code>
+              <span class="text-green-400">geisterhand</span> run gnome-calculator<br/>
+              <span class="text-green-400">geisterhand</span> run firefox<br/>
+              <span class="text-green-400">geisterhand</span> run gnome-text-editor<br/>
+              <span class="text-green-400">geisterhand</span> run gnome-calculator --port 7676 <span class="text-text-secondary"># pin a specific port</span>
+            </code>
+          </div>
+        </div>
         <p class="text-text-secondary text-xs mt-3">
           Then send API requests to the <code class="text-accent-blue">host</code> and <code class="text-accent-blue">port</code> from the JSON output.
         </p>
@@ -190,7 +256,7 @@
           <code>
             <span class="text-text-secondary"># See what's on screen</span><br/>
             <span class="text-green-400">curl</span> http://127.0.0.1:49152/accessibility/tree?format=compact<br/><br/>
-            <span class="text-text-secondary"># Click a button</span><br/>
+            <span class="text-text-secondary"># Click a button (use "push button" on Linux instead of "AXButton")</span><br/>
             <span class="text-green-400">curl</span> -X POST http://127.0.0.1:49152/click/element \<br/>
             &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
             &nbsp;&nbsp;-d '&#123;"title": "7", "role": "AXButton"&#125;'<br/><br/>

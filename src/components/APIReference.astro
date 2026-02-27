@@ -94,7 +94,7 @@ const endpoints = [
 ];
 
 const keys = ["return", "tab", "space", "escape", "delete", "up", "down", "left", "right", "home", "end", "pageup", "pagedown", "f1-f12"];
-const modifiers = ["cmd", "ctrl", "alt", "shift", "fn"];
+const modifiers = ["cmd", "ctrl", "alt", "shift", "fn", "super"];
 const roles = ["AXButton", "AXTextField", "AXTextArea", "AXCheckBox", "AXPopUpButton", "AXMenuItem", "AXStaticText", "AXLink"];
 const actions = ["press", "setValue", "focus", "confirm", "cancel", "increment", "decrement", "showMenu", "pick"];
 ---
@@ -254,10 +254,13 @@ const actions = ["press", "setValue", "focus", "confirm", "cancel", "increment",
       <p class="text-xs text-text-secondary mt-6 text-center">
         Prefer <code class="text-accent-blue">/click/element</code> over coordinate-based <code class="text-accent-blue">/click</code>. Semantic selectors are more reliable than screen positions.
       </p>
+      <p class="text-xs text-text-secondary mt-2 text-center">
+        <strong class="text-text-primary">Linux note:</strong> AT-SPI2 uses different role names — <code class="text-accent-blue">push button</code>, <code class="text-accent-blue">text</code>, <code class="text-accent-blue">label</code> instead of macOS <code class="text-accent-blue">AXButton</code>, <code class="text-accent-blue">AXTextField</code>, <code class="text-accent-blue">AXStaticText</code>.
+      </p>
     </div>
 
     <!-- Links to full docs -->
-    <div class="mt-8 grid sm:grid-cols-3 gap-4">
+    <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <a href="https://github.com/Geisterhand-io/macos/blob/main/TESTING_WITH_GEISTERHAND.md" target="_blank" rel="noopener noreferrer" class="card card-hover flex items-center gap-3 group">
         <svg class="w-5 h-5 text-accent-blue flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -290,6 +293,17 @@ const actions = ["press", "setValue", "focus", "confirm", "cancel", "increment",
         <div>
           <p class="text-sm font-medium text-text-primary group-hover:text-accent-blue transition-colors">Windows Documentation</p>
           <p class="text-xs text-text-secondary">Setup guide and API reference for Geisterhand on Windows</p>
+        </div>
+      </a>
+      <a href="https://github.com/Geisterhand-io/linux" target="_blank" rel="noopener noreferrer" class="card card-hover flex items-center gap-3 group">
+        <svg class="w-5 h-5 text-accent-blue flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        <div>
+          <p class="text-sm font-medium text-text-primary group-hover:text-accent-blue transition-colors">Linux Documentation</p>
+          <p class="text-xs text-text-secondary">Setup guide and API reference for Geisterhand on Linux</p>
         </div>
       </a>
     </div>

@@ -56,7 +56,7 @@
 
       <!-- Subheadline -->
       <p class="text-xl md:text-2xl text-text-secondary mb-10 max-w-2xl mx-auto text-balance">
-        The ghost hand that automates your apps on macOS and Windows. Click buttons, type text, navigate UI elements, and capture screenshots with natural language through Claude Code or Claude Desktop.
+        The ghost hand that automates your apps on macOS, Windows, and Linux. Click buttons, type text, navigate UI elements, and capture screenshots with natural language through Claude Code or Claude Desktop.
       </p>
 
       <!-- Install Command with Platform Tabs -->
@@ -67,6 +67,9 @@
           </button>
           <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="windows">
             Windows
+          </button>
+          <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="linux">
+            Linux
           </button>
         </div>
         <div class="platform-content" data-platform="macos">
@@ -89,6 +92,17 @@
             </span>
           </a>
           <p class="text-xs text-text-secondary/70 mt-2">Windows code signing coming soon. You may see a SmartScreen warning on first run.</p>
+        </div>
+        <div class="platform-content hidden" data-platform="linux">
+          <div class="code-block flex items-center justify-between gap-4 py-3">
+            <code class="text-sm">
+              <span class="text-green-400">cargo</span> install geisterhand
+            </code>
+            <button class="text-xs text-text-secondary hover:text-accent-blue transition-colors flex-shrink-0 copy-btn" data-copy="cargo install geisterhand">
+              Copy
+            </button>
+          </div>
+          <p class="text-xs text-text-secondary/70 mt-2">On Arch Linux: <code class="text-accent-blue">yay -S geisterhand</code></p>
         </div>
       </div>
 
@@ -140,8 +154,10 @@
 
   // Platform tab switching - syncs across the entire page
   function initPlatformTabs() {
-    const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
-    const defaultPlatform = isMac ? 'macos' : 'windows';
+    const ua = navigator.platform || navigator.userAgent;
+    const isMac = /Mac|iPhone|iPad|iPod/.test(ua);
+    const isLinux = /Linux/.test(ua) && !/Android/.test(navigator.userAgent);
+    const defaultPlatform = isMac ? 'macos' : isLinux ? 'linux' : 'windows';
 
     function switchPlatform(platform) {
       document.querySelectorAll('.platform-tab').forEach(tab => {
