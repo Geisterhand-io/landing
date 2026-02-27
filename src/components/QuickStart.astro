@@ -18,21 +18,47 @@
           <span class="w-8 h-8 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center text-sm font-bold">1</span>
           <h3 class="text-lg font-semibold text-text-primary">Install Geisterhand</h3>
         </div>
-        <div class="code-block">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs text-text-secondary">Terminal</span>
-            <button class="text-xs text-text-secondary hover:text-accent-blue transition-colors copy-btn" data-copy="brew install --cask geisterhand-io/tap/geisterhand">
-              Copy
-            </button>
-          </div>
-          <code class="text-sm">
-            <span class="text-green-400">brew</span> install --cask geisterhand-io/tap/geisterhand
-          </code>
+        <div class="flex gap-2 mb-4 border-b border-white/10 pb-2">
+          <button class="platform-tab active px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="macos">
+            macOS
+          </button>
+          <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="windows">
+            Windows
+          </button>
         </div>
-        <p class="text-text-secondary text-xs mt-3">
-          This installs the menu bar app and the <code class="text-accent-blue">geisterhand</code> CLI.
-          Or <a href="https://github.com/Geisterhand-io/macos/releases/latest" target="_blank" rel="noopener noreferrer" class="text-accent-blue hover:underline">download the DMG</a> directly.
-        </p>
+        <div class="platform-content" data-platform="macos">
+          <div class="code-block">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-text-secondary">Terminal</span>
+              <button class="text-xs text-text-secondary hover:text-accent-blue transition-colors copy-btn" data-copy="brew install --cask geisterhand-io/tap/geisterhand">
+                Copy
+              </button>
+            </div>
+            <code class="text-sm">
+              <span class="text-green-400">brew</span> install --cask geisterhand-io/tap/geisterhand
+            </code>
+          </div>
+          <p class="text-text-secondary text-xs mt-3">
+            This installs the menu bar app and the <code class="text-accent-blue">geisterhand</code> CLI.
+            Or <a href="https://github.com/Geisterhand-io/macos/releases/latest" target="_blank" rel="noopener noreferrer" class="text-accent-blue hover:underline">download the DMG</a> directly.
+          </p>
+        </div>
+        <div class="platform-content hidden" data-platform="windows">
+          <div class="code-block">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-text-secondary">Download</span>
+            </div>
+            <code class="text-sm">
+              Download the latest <a href="https://github.com/Geisterhand-io/windows/releases/latest" target="_blank" rel="noopener noreferrer" class="text-accent-blue hover:underline">Geisterhand for Windows</a> from GitHub Releases.
+            </code>
+          </div>
+          <p class="text-text-secondary text-xs mt-3">
+            Run the installer to set up the <code class="text-accent-blue">geisterhand</code> CLI.
+          </p>
+          <p class="text-text-secondary/70 text-xs mt-1">
+            Windows code signing coming soon. You may see a SmartScreen warning on first run.
+          </p>
+        </div>
       </div>
 
       <!-- Step 2: Grant Permissions -->
@@ -41,32 +67,54 @@
           <span class="w-8 h-8 rounded-full bg-accent-blue/20 text-accent-blue flex items-center justify-center text-sm font-bold">2</span>
           <h3 class="text-lg font-semibold text-text-primary">Grant Permissions</h3>
         </div>
-        <p class="text-text-secondary text-sm mb-4">
-          Launch the app once to trigger permission prompts, then grant in System Settings:
-        </p>
-        <div class="grid sm:grid-cols-2 gap-4">
-          <div class="flex items-start gap-3 p-4 bg-bg-primary rounded-lg border border-white/5">
-            <svg class="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="4"/>
-              <line x1="21.17" y1="8" x2="12" y2="8"/>
-              <line x1="3.95" y1="6.06" x2="8.54" y2="14"/>
-              <line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
-            </svg>
-            <div>
-              <div class="font-medium text-text-primary text-sm">Accessibility</div>
-              <div class="text-xs text-text-secondary">For keyboard and mouse control</div>
+        <div class="flex gap-2 mb-4 border-b border-white/10 pb-2">
+          <button class="platform-tab active px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="macos">
+            macOS
+          </button>
+          <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="windows">
+            Windows
+          </button>
+        </div>
+        <div class="platform-content" data-platform="macos">
+          <p class="text-text-secondary text-sm mb-4">
+            Launch the app once to trigger permission prompts, then grant in System Settings:
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="flex items-start gap-3 p-4 bg-bg-primary rounded-lg border border-white/5">
+              <svg class="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="4"/>
+                <line x1="21.17" y1="8" x2="12" y2="8"/>
+                <line x1="3.95" y1="6.06" x2="8.54" y2="14"/>
+                <line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
+              </svg>
+              <div>
+                <div class="font-medium text-text-primary text-sm">Accessibility</div>
+                <div class="text-xs text-text-secondary">For keyboard and mouse control</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-bg-primary rounded-lg border border-white/5">
+              <svg class="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <div>
+                <div class="font-medium text-text-primary text-sm">Screen Recording</div>
+                <div class="text-xs text-text-secondary">For screenshot capture</div>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="platform-content hidden" data-platform="windows">
           <div class="flex items-start gap-3 p-4 bg-bg-primary rounded-lg border border-white/5">
-            <svg class="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21 15 16 10 5 21"/>
+            <svg class="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
             </svg>
             <div>
-              <div class="font-medium text-text-primary text-sm">Screen Recording</div>
-              <div class="text-xs text-text-secondary">For screenshot capture</div>
+              <div class="font-medium text-text-primary text-sm">No extra permissions needed</div>
+              <div class="text-xs text-text-secondary">Geisterhand works out of the box on Windows. Run as administrator only if you need to automate elevated apps.</div>
             </div>
           </div>
         </div>
@@ -94,15 +142,35 @@
           </code>
         </div>
         <p class="text-text-secondary text-sm mt-4 mb-3">
-          The server auto-selects a free port, scopes all API requests to the target app, and exits when the app quits. Pass an app name, bundle path, or bundle identifier:
+          The server auto-selects a free port, scopes all API requests to the target app, and exits when the app quits. Pass an app name, path, or identifier:
         </p>
-        <div class="code-block text-xs">
-          <code>
-            <span class="text-green-400">geisterhand</span> run Safari<br/>
-            <span class="text-green-400">geisterhand</span> run /Applications/Xcode.app<br/>
-            <span class="text-green-400">geisterhand</span> run com.apple.TextEdit<br/>
-            <span class="text-green-400">geisterhand</span> run Calculator --port 7676 <span class="text-text-secondary"># pin a specific port</span>
-          </code>
+        <div class="flex gap-2 mb-3 border-b border-white/10 pb-2">
+          <button class="platform-tab active px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="macos">
+            macOS
+          </button>
+          <button class="platform-tab px-3 py-1.5 text-sm rounded-md transition-colors" data-platform="windows">
+            Windows
+          </button>
+        </div>
+        <div class="platform-content" data-platform="macos">
+          <div class="code-block text-xs">
+            <code>
+              <span class="text-green-400">geisterhand</span> run Safari<br/>
+              <span class="text-green-400">geisterhand</span> run /Applications/Xcode.app<br/>
+              <span class="text-green-400">geisterhand</span> run com.apple.TextEdit<br/>
+              <span class="text-green-400">geisterhand</span> run Calculator --port 7676 <span class="text-text-secondary"># pin a specific port</span>
+            </code>
+          </div>
+        </div>
+        <div class="platform-content hidden" data-platform="windows">
+          <div class="code-block text-xs">
+            <code>
+              <span class="text-green-400">geisterhand</span> run notepad<br/>
+              <span class="text-green-400">geisterhand</span> run "C:\Program Files\MyApp\app.exe"<br/>
+              <span class="text-green-400">geisterhand</span> run Calculator<br/>
+              <span class="text-green-400">geisterhand</span> run Calculator --port 7676 <span class="text-text-secondary"># pin a specific port</span>
+            </code>
+          </div>
         </div>
         <p class="text-text-secondary text-xs mt-3">
           Then send API requests to the <code class="text-accent-blue">host</code> and <code class="text-accent-blue">port</code> from the JSON output.
@@ -208,7 +276,7 @@
 </section>
 
 <script>
-  // Tab switching
+  // Integration tab switching (Claude Code / Claude Desktop)
   document.querySelectorAll('.integration-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.integration-tab').forEach(t => t.classList.remove('active'));

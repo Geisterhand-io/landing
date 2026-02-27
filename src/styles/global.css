@@ -66,6 +66,18 @@
   .section-subheading {
     @apply text-lg text-text-secondary text-center max-w-2xl mx-auto mb-12;
   }
+
+  .platform-tab {
+    color: var(--text-secondary);
+  }
+  .platform-tab:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .platform-tab.active {
+    color: var(--accent-blue);
+    background: rgba(59, 130, 246, 0.1);
+  }
 }
 
 @layer utilities {
